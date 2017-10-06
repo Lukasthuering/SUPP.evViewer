@@ -29,7 +29,7 @@ namespace SupportQuerys
             Console.WriteLine(dt.ToString());
 
 
-            var package = new ExcelPackage(new FileInfo(@"C:\Users\CH-TLU\Desktop\Eventlog" + Runtime.System.SiteServer.System + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx"));
+            var package = new ExcelPackage(new FileInfo(@"C:\Users\CH-TLU\Desktop\Eventlog" + Runtime.System.Street + "_" + Runtime.System.PostalCode + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx"));
             package.Workbook.Worksheets.Add("Events");
             ExcelWorksheet sheet = package.Workbook.Worksheets.First();
 
@@ -50,7 +50,7 @@ namespace SupportQuerys
                     sheet.Cells[row, 2].Value = Runtime.System.SystemID;
                     sheet.Cells[row, 3].Value = entry.Source;
                     sheet.Cells[row, 4].Value = entry.EntryType;
-                    sheet.Cells[row, 5].Value = //Datetime will be here
+                    sheet.Cells[row, 5].Value = entry.TimeGenerated.Date.ToLongDateString();
                     sheet.Cells[row, 6].Value = entry.TimeWritten.ToLongTimeString();
                     sheet.Cells[row, 7].Value = entry.Message;
 
