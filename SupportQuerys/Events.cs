@@ -16,7 +16,7 @@ namespace SupportQuerys
 
         protected override void OnExecuting()
         {
-            #region read
+            #region read eventlog
             //Read eventlog
 
             StringBuilder sb = new StringBuilder();
@@ -28,9 +28,11 @@ namespace SupportQuerys
             DateTime dt = DateTime.MinValue;
             Console.WriteLine(dt.ToString());
 
-
+            //Create Excel file with the correct name
             var package = new ExcelPackage(new FileInfo(@"C:\Users\CH-TLU\Desktop\Eventlog" + Runtime.System.Street + "_" + Runtime.System.PostalCode + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx"));
+            //Add new worksheet with the name "Events"
             package.Workbook.Worksheets.Add("Events");
+            //Go to the first (and only) worksheet in the Excel sheet
             ExcelWorksheet sheet = package.Workbook.Worksheets.First();
 
             int row = 1;
@@ -38,7 +40,7 @@ namespace SupportQuerys
             #endregion
 
 
-            #region write & save
+            #region write to excel file & save
             //Write eventlog to excel file
 
             foreach (System.Diagnostics.EventLogEntry entry in log.Entries)
