@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using BiCA.Sabas.Extension.V2;
 using OfficeOpenXml;
 
@@ -13,12 +11,13 @@ namespace SupportQuerys
     {
         protected override void OnInitializing()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void OnExecuting()
         {
-            //Reading eventlog
+            #region read
+            //Read eventlog
 
             StringBuilder sb = new StringBuilder();
             System.Diagnostics.EventLog log = new
@@ -36,7 +35,10 @@ namespace SupportQuerys
 
             int row = 1;
 
+            #endregion
 
+
+            #region write & save
             //Write eventlog to excel file
 
             foreach (System.Diagnostics.EventLogEntry entry in log.Entries)
@@ -60,14 +62,16 @@ namespace SupportQuerys
             package.Save();
         }
 
+            #endregion
+
         protected override void OnFinalizing()
         {
-            throw new NotImplementedException();
+     
         }
 
         protected override void OnErrorOccurred(Exception exception)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
