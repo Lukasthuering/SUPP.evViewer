@@ -68,7 +68,7 @@ namespace SupportQuerys
 
         protected override void OnFinalizing()
         {
-     
+            //Ad here thigns, the program should do on Finalizing
         }
 
         protected override void OnErrorOccurred(Exception exception)
